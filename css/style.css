@@ -1,0 +1,178 @@
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url('../fonts/glyphicons-halflings-regular.eot');
+    src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
+body{
+    font-family: 'Poiret One', cursive;
+    font-weight: 900;
+}
+.nav-tabs {
+    border-bottom: 1px solid rgb(150, 150, 150);
+}
+a{
+    color:rgb(150, 150, 150);
+}
+.nav {
+    padding-left: 20%;
+    margin: 0 auto;
+    list-style: none;
+    font-size: 16px;
+}
+.done-true {
+    text-decoration: line-through;
+    color: #ddd;
+}
+.panel-heading>h3{
+    font-size: 24px;
+}
+ul {
+    list-style-type: none;
+  }
+.row{
+    height: auto;
+}
+
+img {
+    max-width: 100%;
+}
+.img-responsive{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 32vh;
+    padding: 5px;
+}
+.panel-primary > .panel-heading{
+    background-color: #b60000;
+    border: none;
+}
+.panel-primary, .panel-success{
+border-color: rgb(150, 150, 150);
+}
+#makshead.panel-success > .panel-heading{
+    background-color: #b60000;
+    border: none;
+    color:#fff;
+}
+#maksczas{
+    font-size: 36px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 240px;
+    color: #b60000;
+}
+.panel-body.panel-height{
+    height: 290px;
+}
+#connections1,#connections2{
+    font-size: 20px; 
+    font-weight: bold;
+}
+#warunek.panel-primary > .panel-heading {
+    background-color: #00558d;
+    color:white;
+}
+.btn-danger,.btn-danger:focus{
+    background-color:#5c5a5a;
+    border-color:rgb(150, 150, 150);
+}
+
+@media screen and (min-width: 1300px) {
+    .container{
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -41%);
+    }
+    .nav {
+        padding-left: 42%;
+        font-size: 24px;
+    }
+    #connections3{
+        font-size: 22px; 
+    }
+}
+@media screen and (min-width: 900px) and (max-width: 1300px) {
+    .nav {
+        padding-left: 40%;
+        font-size: 24px;
+    }
+    #connections1.panel-body{
+        font-size: 17px; 
+    }
+    .panel-heading>h3{
+        font-size: 18px; 
+    }
+    #connections2.panel-body{
+        font-size: 17px; 
+    }
+    #connections3{
+        font-size: 17px; 
+    }
+}
+@media screen and (min-width: 650px) and (max-width: 900px) {
+    .nav {
+        padding-left: 35%;
+        font-size: 20px;
+    }
+    .panel-body.panel-height{
+        height: 350px;
+    }
+    #connections1.panel-body{
+        font-size: 14px; 
+    }
+    .panel-heading>h3{
+        font-size: 15px; 
+    }
+    #connections2.panel-body{
+        font-size: 12.4px; 
+    }
+    #connections3{
+        font-size: 15px; 
+    }
+}
+@media screen and (min-width: 390px) and (max-width: 650px) {
+    .nav {
+        padding-left: 33%;
+        font-size: 18px;
+    }
+    #connections1.panel-body{
+        font-size: 14px; 
+    }
+    .panel-heading>h3{
+        font-size: 20px; 
+    }
+    #connections2{
+        font-size: 14px; 
+    }
+    .panel-body.panel-height{
+        height: 285px;
+    }
+    #maksczas.panel-body.panel-height{
+        height: 250px;
+    }
+}
+@media screen and (max-width: 390px) {
+    #connections1.panel-body{
+        font-size: 7px; 
+    }
+    .panel-heading>h3{
+        font-size: 16px; 
+    }
+    .panel-body.panel-height{
+        height: 300px;
+    }
+    #maksczas.panel-body.panel-height{
+        height: 100px;
+    }
+    #maksczas{
+        font-size: 22px;
+        line-height: 76px;
+    }
+    #connections2{
+        font-size: 16px; 
+    }
+}

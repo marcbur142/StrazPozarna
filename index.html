@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html data-ng-app="app">
+<head>
+<title>Straż Pożarna - Marcin Bury</title>
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/style.css" />
+<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+
+</head>
+<body data-ng-controller="Ctrl">
+
+<div class="tabbable tabs-left">
+        <div class="row">
+        <ul class="nav nav-tabs">
+           <li ng-class="getTabClass(1)" ng-click="setActiveTab(1)"><a href="#app" data-toggle="tab">Aplikacja</a></li>
+           <li ng-class="getTabClass(2)" ng-click="setActiveTab(2)"><a href="#admin" data-toggle="tab">Zarządzanie</a></li>
+        </ul>
+    </div>
+        <div class="tab-content">
+          <div ng-class="getTabPaneClass(1)" id="app">   
+                <div class="container"> 
+                <div class="row">
+                    <div class="col-sm-12">
+                            <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><center>Aplikacja Sraży Pożarnej</br>- Marcin Bury</h3>
+                                    </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-primary">
+                            <img class="img-responsive" src="straz.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title"><center>Miasta z jednostką</h3>
+                                </div>
+                                <div class="panel-body" id="connections3">
+                                    <ul>
+                                        <li>
+                                            <span id="ma">Katowice, Sosnowiec, </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><center>Miasta bez jednostki</h3>
+                                    </div>
+                                    <div class="panel-body" id="connections3">
+                                        <ul>
+                                            <li>
+                                                <span id="niema">Koszutka, Zawodzie, </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><center>Lista połączeń (miasta, czas przejazdu, uwagi)</h3>
+                            </div>
+                            <div class="panel-body" id="connections1">
+                                <div class="row">
+                                    <div class="col-md-5  col-xs-5">
+                                        <ul>
+                                            <li data-ng-repeat="todo in con">
+                                                <span class="done-{{todo.done}}">{{todo.drogi.polaczenie}}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-3  col-xs-2">
+                                        <ul>
+                                            <li data-ng-repeat="todo in con">
+                                                <span class="done-{{todo.done}}">{{todo.drogi.czas_przejazdu}}min</span>
+                                            </li>
+                                        </ul>                            
+                                    </div>
+                                    <div class="col-md-4  col-xs-5">
+                                        <ul>
+                                            <li data-ng-repeat="todo in con">
+                                                <span class="done-{{todo.done}}">{{todo.maks_czas.spelniony}}</span>
+                                            </li>
+                                        </ul>                            
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>       
+          
+        <div ng-class="getTabPaneClass(2)" id="admin">     
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Dodaj miasta!</h3>
+                            </div>
+                            <div class="panel-body panel-height">
+                                <form name="f" data-ng-submit="addCity()">
+                                    Miasto: <textarea class="form-control" name="newTodo" data-ng-model="formData.newTodo" ng-change="save(newMessage);" required></textarea><br />
+                                    Czy posiada jednostkę?: <select class="form-control" name="able" data-ng-model="formData.able" data-ng-options="value for value in able" required>
+                                    </select><br/>
+                                    <button class="btn btn-success" data-ng-disabled="f.$invalid">Dodaj <span class="glyphicon glyphicon-ok"></span></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Dodaj połączenie!</h3>
+                            </div>
+                            <div class="panel-body panel-height">
+                                <form name="f" data-ng-submit="addConnection()">
+                                    Pierwsze miasto (posiada jednostkę): <select class="form-control" name="miastoA" data-ng-model="formData.miastoA" data-ng-options="value for value in miastoA" required>
+                                    </select><br />
+                                    Drugie miasto (nie posiada jednostki):<select class="form-control" name="miastoB" data-ng-model="formData.miastoB" data-ng-options="value for value in miastoB" required>
+                                    </select><br />
+                                    Czas przejazdu między miastami (min): <select class="form-control" name="min" data-ng-model="formData.min" data-ng-options="value for value in min" required>
+                                    </select><br />
+                                    <button class="btn btn-success" data-ng-disabled="f.$invalid">Dodaj <span class="glyphicon glyphicon-ok"></span></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="panel panel-success" id="makshead">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Dopuszczalny czas przejazdu!</h3>
+                            </div>
+                            <div class="panel-body panel-height" id="maksczas">
+                                10 minut           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="panel panel-primary"  id="warunek">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Lista połączeń + czas przejazdu</h3>
+                            </div>
+                        <div class="panel-body" id="connections1">
+                            <div class="row">
+                                <div class="col-md-8 col-xs-7">
+                                    <ul>
+                                        <li data-ng-repeat="todo in con">
+                                            <input type="checkbox" data-ng-model="todo.done" title="Mark Complete" />
+                                            <span class="done-{{todo.done}}">{{todo.drogi.polaczenie}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4 col-xs-5">
+                                    <ul>
+                                        <li data-ng-repeat="todo in con">
+                                            <span class="done-{{todo.done}}">{{todo.drogi.czas_przejazdu}}min</span>
+                                        </li>
+                                    </ul>                            
+                                </div>
+                            </div> 
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Czy spełnia warunek</h3>
+                            </div> 
+                            <div class="panel-body" id="connections2">
+                                <ul>
+                                    <li data-ng-repeat="todo in con">
+                                        <span class="done-{{todo.done}}">{{todo.maks_czas.spelniony}}</span>
+                                    </li>
+                                </ul>
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default" >
+                    <div class="panel-body" >
+                        <button class="btn btn-danger" data-ng-click="deleteCompleted()">Usuń <span class="glyphicon glyphicon-remove"></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+</div>
+
+<script src="js/bootstrap.min.js"></script>
+<script src="js/angular.min.js"></script>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>
